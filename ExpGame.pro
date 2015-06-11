@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     gui/qresetbutton.cpp \
     core/observer.cpp \
     core/subject.cpp \
-    gui/qgameoverwindow.cpp
+    gui/qgameoverwindow.cpp \
+    SelfUpdate.cpp
 
 HEADERS  += gui/mainwindow.h \
     core/tile.h \
@@ -34,5 +35,6 @@ HEADERS  += gui/mainwindow.h \
     core/observer.h \
     core/subject.h \
     gui/qgameoverwindow.h \
-    gui/qwinwindow.h
+    gui/qwinwindow.h \
+    SelfUpdate.h
 

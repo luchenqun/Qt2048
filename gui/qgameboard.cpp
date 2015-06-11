@@ -4,13 +4,14 @@
 #include "gui/qtile.h"
 #include "core/tile.h"
 #include "gui/qresetbutton.h"
+#include "SelfUpdate.h"
 
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QPushButton>
 #include <QLabel>
 #include <QKeyEvent>
-#include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QString>
 
 #include <QDebug>
@@ -24,7 +25,8 @@ QGameBoard::QGameBoard(QWidget *parent) :
     QWidget(parent)
 {
     // set default size
-    resize(650,450);
+    resize(450,500);
+    this->setWindowFlags(Qt::WindowMinimizeButtonHint |  Qt::WindowCloseButtonHint);
 
     // create the main layout
     mainLayout = new QVBoxLayout();
@@ -48,9 +50,19 @@ QGameBoard::QGameBoard(QWidget *parent) :
 
     // create the score widget and add it to the board
     score = new QLabel(QString("SCORE: %1").arg(game->getScore()));
+    score->setText(QStringLiteral("提示:按键盘的↑→↓←操作"));
     score->setStyleSheet("QLabel { color: rgb(235,224,214); font: 16pt; }");
     score->setFixedHeight(50);
-    mainLayout->insertWidget(1, score, 0, Qt::AlignRight);
+
+    version = new QLabel(QString("Version:") + SelfUpdate::getLocalVer());
+    version->setStyleSheet("QLabel { color: rgb(235,224,214); font: 16pt; }");
+    version->setFixedHeight(50);
+
+    QHBoxLayout *lableLayout = new QHBoxLayout();
+
+    lableLayout->addWidget(version, 1, Qt::AlignLeft);
+    lableLayout->addWidget(score, 1,  Qt::AlignRight);
+    mainLayout->insertLayout(1, lableLayout);
 
     // style sheet of the board
     setStyleSheet("QGameBoard { background-color: rgb(187,173,160) }");

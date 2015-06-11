@@ -39,6 +39,7 @@ private:
     QGameOverWindow gameOverWindow;
     // winner widget
     QLabel *youwin;
+    QLabel *version;
 
     void drawBoard();
 
