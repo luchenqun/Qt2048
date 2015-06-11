@@ -6,12 +6,13 @@
 #include <QProcess>
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
+#include <QTextCodec>
 #include "core/board.h"
 #include "gui/qgameboard.h"
 #include "gui/qgameoverwindow.h"
 #include "SelfUpdate.h"
 
-void execUpdateExe(QString pitchUrl, QString latestUrl)
+void executeUpdateExe(QString pitchUrl, QString latestUrl)
 {
     QProcess p;
     QString program = "update.exe";
@@ -24,7 +25,6 @@ void execUpdateExe(QString pitchUrl, QString latestUrl)
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
     // 检测是否需要升级
     SelfUpdate selfUpdate;
     selfUpdate.getUpdateSoftWare();
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
                     ("当前版本：" + SelfUpdate::getLocalVer()+ "，最新版本：" + selfUpdate.netVer() + "。是否需要升级？"),
                     QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes)
         {
-            execUpdateExe(selfUpdate.pitchUrl(), selfUpdate.latestUrl());
+            executeUpdateExe(selfUpdate.pitchUrl(), selfUpdate.latestUrl());
             return 0;
         }
     }
