@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
         if (QMessageBox::information(
                     NULL,
                     QStringLiteral("升级提示"),
-                    ("当前版本：" + SelfUpdate::getLocalVer()+ "，最新版本：" + selfUpdate.netVer() + "。是否需要升级？"),
+                    ("当前版本：" + SelfUpdate::getLocalVer()+ "，最新版本：" + selfUpdate.netVer() + "。是否需要升级？！"),
                     QMessageBox::Yes | QMessageBox::No) == QMessageBox::Yes)
         {
             executeUpdateExe(selfUpdate.pitchUrl(), selfUpdate.latestUrl());
